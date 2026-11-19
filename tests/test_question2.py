@@ -21,7 +21,17 @@ def test_pipeline_resolves_public_tickets():
         assert got.kb_article == expected.kb_article
 
 
-def test_baseline_cost_is_high():
+def test_holdout_subscription():
     pipe = SupportPipeline()
-    pipe.handle_ticket(PUBLIC[0])
-    assert pipe.session.total_points() > 70_000
+    got = pipe.handle_ticket("T-1091")
+    exp = TICKET_EXPECTATIONS["T-1091"]
+    assert got.action == exp.action
+    assert got.kb_article == exp.kb_article
+
+
+def test_cost_within_target():
+    """Target: <= 2500 points per public ticket."""
+    for tid in PUBLIC:
+        pipe = SupportPipeline()
+        pipe.handle_ticket(tid)
+        assert pipe.session.total_points() <= 2500, tid
