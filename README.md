@@ -1,5 +1,7 @@
 # ShopAssist — support copilot cost lab
 
+> **Solution write-up, results and cost breakdowns: [SOLUTION.md](SOLUTION.md)** — Q1 ~1,190 pts/ticket (−87%), Q2 ~1,256 pts/ticket (−98%), all tests passing. Per-call tables: `python scripts/cost_report.py`.
+
 **ShopAssist** is a Tier-1 support agent for an e-commerce company. For each ticket it:
 
 1. Reads the customer thread (`data/tickets/`)
